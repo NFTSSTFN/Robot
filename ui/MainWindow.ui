@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>2375</width>
+    <height>1188</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_16">
+    <item>
+     <widget class="QWidget" name="widget_main" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_15">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_14">
+         <item>
+          <widget class="QWidget" name="widget_tittle" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_26">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_25">
+              <item>
+               <widget class="QLabel" name="lb_picture">
+                <property name="text">
+                 <string>PIC</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="lb_content">
+                <property name="text">
+                 <string>Content</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_min">
+                <property name="text">
+                 <string>Min</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_max">
+                <property name="text">
+                 <string>Max/Min</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_close">
+                <property name="text">
+                 <string>Close</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QWidget" name="widget_menu" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_28">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_27">
+              <item>
+               <widget class="QPushButton" name="pushButton">
+                <property name="text">
+                 <string>PushButton</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_2">
+                <property name="text">
+                 <string>PushButton</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_3">
+                <property name="text">
+                 <string>PushButton</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_4">
+                <property name="text">
+                 <string>PushButton</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_31" stretch="2,15,1">
+           <item>
+            <widget class="QWidget" name="widget_tools" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_13">
+              <item>
+               <widget class="QTabWidget" name="tabWidget">
+                <widget class="QWidget" name="tab">
+                 <attribute name="title">
+                  <string>Tab 1</string>
+                 </attribute>
+                 <layout class="QVBoxLayout" name="verticalLayout_12">
+                  <item>
+                   <widget class="QGroupBox" name="groupBox_2">
+                    <property name="title">
+                     <string>机械臂模型控制</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_8">
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="1,1,0">
+                         <item>
+                          <widget class="QLabel" name="label_8">
+                           <property name="text">
+                            <string>joint1</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="le_joint1"/>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="label_19">
+                           <property name="text">
+                            <string>°</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QSlider" name="sld_joint1">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_2">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="1,1,0">
+                         <item>
+                          <widget class="QLabel" name="label_11">
+                           <property name="text">
+                            <string>joint2</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="le_joint2"/>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="label_20">
+                           <property name="text">
+                            <string>°</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QSlider" name="sld_joint2">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_3">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,1,0">
+                         <item>
+                          <widget class="QLabel" name="label_12">
+                           <property name="text">
+                            <string>joint3</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="le_joint3"/>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="label_33">
+                           <property name="text">
+                            <string>°</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QSlider" name="sld_joint3">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_4">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="1,1,0">
+                         <item>
+                          <widget class="QLabel" name="label_9">
+                           <property name="text">
+                            <string>joint4</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="le_joint4"/>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="label_46">
+                           <property name="text">
+                            <string>°</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QSlider" name="sld_joint4">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_5">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1,1,0">
+                         <item>
+                          <widget class="QLabel" name="label_7">
+                           <property name="text">
+                            <string>joint5</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="le_joint5"/>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="label_47">
+                           <property name="text">
+                            <string>°</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QSlider" name="sld_joint5">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_6">
+                       <item>
+                        <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="1,1,0">
+                         <item>
+                          <widget class="QLabel" name="label_10">
+                           <property name="text">
+                            <string>joint6</string>
+                           </property>
+                          </widget>
+                         </item>
+                         <item>
+                          <widget class="QLineEdit" name="le_joint6"/>
+                         </item>
+                         <item>
+                          <widget class="QLabel" name="label_48">
+                           <property name="text">
+                            <string>°</string>
+                           </property>
+                          </widget>
+                         </item>
+                        </layout>
+                       </item>
+                       <item>
+                        <widget class="QSlider" name="sld_joint6">
+                         <property name="orientation">
+                          <enum>Qt::Horizontal</enum>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <spacer name="verticalSpacer">
+                       <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>20</width>
+                         <height>40</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+                <widget class="QWidget" name="tab_2">
+                 <attribute name="title">
+                  <string>Tab 2</string>
+                 </attribute>
+                </widget>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_3D" native="true">
+             <layout class="QHBoxLayout" name="horizontalLayout_30">
+              <item>
+               <layout class="QHBoxLayout" name="layout_3D"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <widget class="QWidget" name="widget_message" native="true">
+             <layout class="QVBoxLayout" name="verticalLayout_11">
+              <item>
+               <widget class="QGroupBox" name="groupBox">
+                <property name="title">
+                 <string>TCP-Pose</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_7">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout">
+                   <item>
+                    <widget class="QLabel" name="label">
+                     <property name="text">
+                      <string>X </string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_x"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_27">
+                     <property name="text">
+                      <string>m  </string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_2">
+                   <item>
+                    <widget class="QLabel" name="label_2">
+                     <property name="text">
+                      <string>Y </string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_y"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_28">
+                     <property name="text">
+                      <string>m  </string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_3">
+                   <item>
+                    <widget class="QLabel" name="label_3">
+                     <property name="text">
+                      <string>Z </string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_z"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_29">
+                     <property name="text">
+                      <string>m  </string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_4">
+                   <item>
+                    <widget class="QLabel" name="label_4">
+                     <property name="text">
+                      <string>RX</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_rx"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_30">
+                     <property name="text">
+                      <string>rad</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_5">
+                   <item>
+                    <widget class="QLabel" name="label_5">
+                     <property name="text">
+                      <string>RY</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_ry"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_31">
+                     <property name="text">
+                      <string>rad</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_6">
+                   <item>
+                    <widget class="QLabel" name="label_6">
+                     <property name="text">
+                      <string>RZ</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_rz"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_32">
+                     <property name="text">
+                      <string>rad</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="groupBox_3">
+                <property name="title">
+                 <string>Angle</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_9">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_14">
+                   <item>
+                    <widget class="QLabel" name="label_14">
+                     <property name="text">
+                      <string>J1</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_angle1"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_21">
+                     <property name="text">
+                      <string>° </string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_17">
+                   <item>
+                    <widget class="QLabel" name="label_17">
+                     <property name="text">
+                      <string>J2</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_angle2"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_22">
+                     <property name="text">
+                      <string>° </string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_18">
+                   <item>
+                    <widget class="QLabel" name="label_18">
+                     <property name="text">
+                      <string>J3</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_angle3"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_23">
+                     <property name="text">
+                      <string>° </string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_15">
+                   <item>
+                    <widget class="QLabel" name="label_15">
+                     <property name="text">
+                      <string>J4</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_angle4"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_24">
+                     <property name="text">
+                      <string>° </string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_13">
+                   <item>
+                    <widget class="QLabel" name="label_13">
+                     <property name="text">
+                      <string>J5</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_angle5"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_25">
+                     <property name="text">
+                      <string>° </string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_16">
+                   <item>
+                    <widget class="QLabel" name="label_16">
+                     <property name="text">
+                      <string>J6</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_angle6"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_26">
+                     <property name="text">
+                      <string>° </string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item>
+               <widget class="QGroupBox" name="groupBox_4">
+                <property name="title">
+                 <string>Radian</string>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_10">
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_19">
+                   <item>
+                    <widget class="QLabel" name="label_34">
+                     <property name="text">
+                      <string>J1</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_radian1"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_35">
+                     <property name="text">
+                      <string>rad</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_23">
+                   <item>
+                    <widget class="QLabel" name="label_42">
+                     <property name="text">
+                      <string>J2</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_radian2"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_43">
+                     <property name="text">
+                      <string>rad</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_20">
+                   <item>
+                    <widget class="QLabel" name="label_36">
+                     <property name="text">
+                      <string>J3</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_radian3"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_37">
+                     <property name="text">
+                      <string>rad</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_22">
+                   <item>
+                    <widget class="QLabel" name="label_40">
+                     <property name="text">
+                      <string>J4</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_radian4"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_41">
+                     <property name="text">
+                      <string>rad</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_21">
+                   <item>
+                    <widget class="QLabel" name="label_38">
+                     <property name="text">
+                      <string>J5</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_radian5"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_39">
+                     <property name="text">
+                      <string>rad</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_24">
+                   <item>
+                    <widget class="QLabel" name="label_44">
+                     <property name="text">
+                      <string>J6</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QLineEdit" name="le_radian6"/>
+                   </item>
+                   <item>
+                    <widget class="QLabel" name="label_45">
+                     <property name="text">
+                      <string>rad</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
