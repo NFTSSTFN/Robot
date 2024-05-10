@@ -75,6 +75,7 @@ class DH:
                [np.sin(theta), np.cos(theta) * np.cos(alpha), -np.cos(theta) * np.sin(alpha), a * np.sin(theta)],
                [0, np.sin(alpha), np.cos(alpha), d],
                [0, 0, 0, 1]]
+        ret = np.matrix(ret)
         return ret
 
     def RV_RM(self, p: list):
