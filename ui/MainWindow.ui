@@ -6,23 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1279</width>
+    <width>1460</width>
     <height>967</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout_29">
+    <property name="leftMargin">
+     <number>11</number>
+    </property>
     <item>
      <widget class="QWidget" name="widget_background" native="true">
       <layout class="QVBoxLayout" name="verticalLayout_21">
        <property name="spacing">
-        <number>7</number>
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
        </property>
        <property name="rightMargin">
-        <number>11</number>
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
        </property>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_16">
@@ -59,6 +77,48 @@
                </spacer>
               </item>
               <item>
+               <widget class="QPushButton" name="btn_1">
+                <property name="text">
+                 <string>Btn1</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_2">
+                <property name="text">
+                 <string>Btn2</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_3">
+                <property name="text">
+                 <string>Btn3</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_4">
+                <property name="text">
+                 <string>Btn4</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_5">
+                <property name="text">
+                 <string>Btn5</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btn_6">
+                <property name="text">
+                 <string>Btn6</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="btn_min">
                 <property name="text">
                  <string/>
@@ -90,48 +150,6 @@
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_27">
               <item>
-               <widget class="QPushButton" name="btn_1">
-                <property name="text">
-                 <string>PushButton</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btn_2">
-                <property name="text">
-                 <string>PushButton</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btn_3">
-                <property name="text">
-                 <string>PushButton</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btn_4">
-                <property name="text">
-                 <string>PushButton</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btn_5">
-                <property name="text">
-                 <string>PushButton</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btn_6">
-                <property name="text">
-                 <string>PushButton</string>
-                </property>
-               </widget>
-              </item>
-              <item>
                <spacer name="horizontalSpacer_2">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -155,7 +173,7 @@
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_14">
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_31" stretch="3,15,3">
+               <layout class="QHBoxLayout" name="horizontalLayout_31" stretch="1,15,1">
                 <item>
                  <widget class="QWidget" name="widget_tools" native="true">
                   <layout class="QVBoxLayout" name="verticalLayout_13">
@@ -175,6 +193,9 @@
                      </property>
                      <property name="elideMode">
                       <enum>Qt::ElideLeft</enum>
+                     </property>
+                     <property name="tabBarAutoHide">
+                      <bool>false</bool>
                      </property>
                      <widget class="QWidget" name="tab">
                       <attribute name="title">
@@ -1294,7 +1315,7 @@
               <item>
                <widget class="QLabel" name="label_66">
                 <property name="text">
-                 <string>TextLabel</string>
+                 <string>文字内容保留</string>
                 </property>
                </widget>
               </item>

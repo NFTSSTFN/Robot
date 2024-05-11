@@ -17,17 +17,20 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1279, 967)
+        MainWindow.resize(1460, 967)
+        MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setStyleSheet(u"")
         self.horizontalLayout_29 = QHBoxLayout(self.centralwidget)
         self.horizontalLayout_29.setObjectName(u"horizontalLayout_29")
+        self.horizontalLayout_29.setContentsMargins(11, -1, -1, -1)
         self.widget_background = QWidget(self.centralwidget)
         self.widget_background.setObjectName(u"widget_background")
         self.verticalLayout_21 = QVBoxLayout(self.widget_background)
-        self.verticalLayout_21.setSpacing(7)
+        self.verticalLayout_21.setSpacing(0)
         self.verticalLayout_21.setObjectName(u"verticalLayout_21")
-        self.verticalLayout_21.setContentsMargins(-1, -1, 11, -1)
+        self.verticalLayout_21.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_16 = QVBoxLayout()
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
         self.widget_tittle = QWidget(self.widget_background)
@@ -49,6 +52,36 @@ class Ui_MainWindow(object):
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_25.addItem(self.horizontalSpacer)
+
+        self.btn_1 = QPushButton(self.widget_tittle)
+        self.btn_1.setObjectName(u"btn_1")
+
+        self.horizontalLayout_25.addWidget(self.btn_1)
+
+        self.btn_2 = QPushButton(self.widget_tittle)
+        self.btn_2.setObjectName(u"btn_2")
+
+        self.horizontalLayout_25.addWidget(self.btn_2)
+
+        self.btn_3 = QPushButton(self.widget_tittle)
+        self.btn_3.setObjectName(u"btn_3")
+
+        self.horizontalLayout_25.addWidget(self.btn_3)
+
+        self.btn_4 = QPushButton(self.widget_tittle)
+        self.btn_4.setObjectName(u"btn_4")
+
+        self.horizontalLayout_25.addWidget(self.btn_4)
+
+        self.btn_5 = QPushButton(self.widget_tittle)
+        self.btn_5.setObjectName(u"btn_5")
+
+        self.horizontalLayout_25.addWidget(self.btn_5)
+
+        self.btn_6 = QPushButton(self.widget_tittle)
+        self.btn_6.setObjectName(u"btn_6")
+
+        self.horizontalLayout_25.addWidget(self.btn_6)
 
         self.btn_min = QPushButton(self.widget_tittle)
         self.btn_min.setObjectName(u"btn_min")
@@ -77,36 +110,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
         self.horizontalLayout_27 = QHBoxLayout()
         self.horizontalLayout_27.setObjectName(u"horizontalLayout_27")
-        self.btn_1 = QPushButton(self.widget_menu)
-        self.btn_1.setObjectName(u"btn_1")
-
-        self.horizontalLayout_27.addWidget(self.btn_1)
-
-        self.btn_2 = QPushButton(self.widget_menu)
-        self.btn_2.setObjectName(u"btn_2")
-
-        self.horizontalLayout_27.addWidget(self.btn_2)
-
-        self.btn_3 = QPushButton(self.widget_menu)
-        self.btn_3.setObjectName(u"btn_3")
-
-        self.horizontalLayout_27.addWidget(self.btn_3)
-
-        self.btn_4 = QPushButton(self.widget_menu)
-        self.btn_4.setObjectName(u"btn_4")
-
-        self.horizontalLayout_27.addWidget(self.btn_4)
-
-        self.btn_5 = QPushButton(self.widget_menu)
-        self.btn_5.setObjectName(u"btn_5")
-
-        self.horizontalLayout_27.addWidget(self.btn_5)
-
-        self.btn_6 = QPushButton(self.widget_menu)
-        self.btn_6.setObjectName(u"btn_6")
-
-        self.horizontalLayout_27.addWidget(self.btn_6)
-
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_27.addItem(self.horizontalSpacer_2)
@@ -135,6 +138,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabPosition(QTabWidget.West)
         self.tabWidget.setTabShape(QTabWidget.Rounded)
         self.tabWidget.setElideMode(Qt.ElideLeft)
+        self.tabWidget.setTabBarAutoHide(False)
         self.tab = QWidget()
         self.tab.setObjectName(u"tab")
         self.verticalLayout_12 = QVBoxLayout(self.tab)
@@ -1052,9 +1056,9 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_31.addWidget(self.widget_message)
 
-        self.horizontalLayout_31.setStretch(0, 3)
+        self.horizontalLayout_31.setStretch(0, 1)
         self.horizontalLayout_31.setStretch(1, 15)
-        self.horizontalLayout_31.setStretch(2, 3)
+        self.horizontalLayout_31.setStretch(2, 1)
 
         self.verticalLayout_14.addLayout(self.horizontalLayout_31)
 
@@ -1105,15 +1109,15 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.lb_picture.setText(QCoreApplication.translate("MainWindow", u"PIC", None))
         self.lb_content.setText(QCoreApplication.translate("MainWindow", u"Content", None))
+        self.btn_1.setText(QCoreApplication.translate("MainWindow", u"Btn1", None))
+        self.btn_2.setText(QCoreApplication.translate("MainWindow", u"Btn2", None))
+        self.btn_3.setText(QCoreApplication.translate("MainWindow", u"Btn3", None))
+        self.btn_4.setText(QCoreApplication.translate("MainWindow", u"Btn4", None))
+        self.btn_5.setText(QCoreApplication.translate("MainWindow", u"Btn5", None))
+        self.btn_6.setText(QCoreApplication.translate("MainWindow", u"Btn6", None))
         self.btn_min.setText("")
         self.btn_max.setText("")
         self.btn_close.setText("")
-        self.btn_1.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.btn_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.btn_3.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.btn_4.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.btn_5.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
-        self.btn_6.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"\u673a\u68b0\u81c2\u6a21\u578b\u63a7\u5236", None))
         self.label_8.setText(QCoreApplication.translate("MainWindow", u"joint1", None))
         self.label_19.setText(QCoreApplication.translate("MainWindow", u"\u00b0", None))
@@ -1207,6 +1211,6 @@ class Ui_MainWindow(object):
         self.label_39.setText(QCoreApplication.translate("MainWindow", u"rad", None))
         self.label_44.setText(QCoreApplication.translate("MainWindow", u"J6", None))
         self.label_45.setText(QCoreApplication.translate("MainWindow", u"rad", None))
-        self.label_66.setText(QCoreApplication.translate("MainWindow", u"TextLabel", None))
+        self.label_66.setText(QCoreApplication.translate("MainWindow", u"\u6587\u5b57\u5185\u5bb9\u4fdd\u7559", None))
     # retranslateUi
 

@@ -194,6 +194,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.le_angle6.setAlignment(Qt.AlignCenter)
         self.le_runtime.setAlignment(Qt.AlignCenter)                    # 运行时间按钮
 
+        # 设置文本框最大最小宽度
+        self.le_x.setFixedWidth(85)
+        self.le_y.setFixedWidth(85)
+        self.le_z.setFixedWidth(85)
+        self.le_rx.setFixedWidth(85)
+        self.le_ry.setFixedWidth(85)
+        self.le_rz.setFixedWidth(85)
+        self.le_radian1.setFixedWidth(85)
+        self.le_radian2.setFixedWidth(85)
+        self.le_radian3.setFixedWidth(85)
+        self.le_radian4.setFixedWidth(85)
+        self.le_radian5.setFixedWidth(85)
+        self.le_radian6.setFixedWidth(85)
+        self.le_angle1.setFixedWidth(85)
+        self.le_angle2.setFixedWidth(85)
+        self.le_angle3.setFixedWidth(85)
+        self.le_angle4.setFixedWidth(85)
+        self.le_angle5.setFixedWidth(85)
+        self.le_angle6.setFixedWidth(85)
+
         # 将主页面右侧三栏文本框数据设置为只显示
         self.le_x.setReadOnly(True)
         self.le_y.setReadOnly(True)
@@ -213,6 +233,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.le_angle4.setReadOnly(True)
         self.le_angle5.setReadOnly(True)
         self.le_angle6.setReadOnly(True)
+        self.le_runtime.setReadOnly(True)                               # 机械臂运行时间
 
         # 设置机械臂IO的checkbox为只读
         self.chk_DI1.setDisabled(True)
@@ -249,6 +270,109 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.widget_main.setMouseTracking(True)                         # 设置主要内容窗体鼠标追踪
         self.widget_menu.setMouseTracking(True)                         # 设置菜单栏鼠标追踪
         self.widget_statusbar.setMouseTracking(True)                    # 设置状态栏鼠标追踪
+
+        # 设置各个窗体的Margin
+        self.centralwidget.layout().setContentsMargins(0, 0, 0, 0)      # 左、上、右、下
+        self.centralwidget.layout().setSpacing(0)
+        self.widget_background.layout().setContentsMargins(0, 0, 0, 0)
+        self.widget_background.layout().setSpacing(0)
+        self.widget_main.layout().setContentsMargins(0, 0, 11, 0)
+        self.widget_main.layout().setSpacing(0)
+        self.widget_3D.layout().setContentsMargins(0, 11, 0, 11)
+        self.widget_3D.layout().setSpacing(0)
+
+
+        # #6e6b6e       暗沉灰
+        # #747780       高亮灰
+        # #3c3f41       浅黑
+        # #2b2b2b       深黑
+        # #0abcd0       高亮淡蓝
+        # 设置界面样式
+        self.setStyleSheet('''
+                /* 界面设置背景颜色 */
+                *{font-family:微软雅黑; font-size:15px; color:white;}
+                #widget_background{background-color:qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
+                                                stop:0 #3c3f41,  
+                                                stop:1 #2b2b2b);;}
+                #widget_menu{border-top:0.5px solid #6e6b6e;}
+                #widget_main{border-bottom:0.5px solid #6e6b6e;
+                            border-top:0.5px solid #6e6b6e;}
+        
+                
+                /* 修饰所有QLineEdit */
+                QWidget QLineEdit{border:1px solid #666666; background-color:#7d7d7d; border-radius:2px}
+                
+                /* 修饰QGroupBox */
+                QGroupBox{border:2px solid #444444; margin-top:20px;}
+                QGroupBox::title{subcontrol-origin:margin; margin-top:-5px}
+                QGroupBox QGroupBox::title{subcontrol-position:top center;}
+                
+                /* 修饰QGroupBox下QLabel */
+                QGroupBox QLabel{font-family:楷体; font-size:15px; color:white;}
+                
+                /* 修饰QGroupBox下的QCheckBox */
+                QGroupBox QCheckBox{border:0px solid;}
+                QGroupBox QCheckBox::indicator:checked 
+                {
+                    width: 20px;
+                    height: 20px;
+                    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, 
+                                                stop:0 #0abcd0,  
+                                                stop:0.8 #45474d, 
+                                                stop:0.85 #45474d, 
+                                                stop:1 #0abcd0);
+                    border: 1px solid #45474d;
+                    border-radius: 10px;
+                }
+                QGroupBox QCheckBox::indicator:unchecked{width: 20px;height: 20px;border-radius: 10px;
+                                                    background-color: #7d7d7d; border: 1px solid #666666;}
+                
+                /* 修饰tab页的主体 */
+                QTabWidget::pane {background: transparent; border: 5px;}
+
+                /* 修饰tab页表头 */
+                QTabBar::tab { background: transparent;
+                padding-left: 0px;                                          /*这句决定了标签到文字的距离*/
+                padding-right: 0px;
+                padding-top: 10px;
+                padding-bottom: 10px;
+                }
+                
+                /* 修饰tab页选中时样式 */
+                QTabBar::tab:selected, QTabBar::tab:hover {background: #3c3f41; border-right: 2px solid #0abcd0;}
+                
+                /* 修饰widget下的QPushButton按钮样式 */
+                #widget_tittle QPushButton{border:1px; width:50px; height:50px; border-radius:10px}
+                #widget_tittle QPushButton:hover {background: #7d7d7d;}
+                #widget_tittle QPushButton:pressed{background: #7d7d7d; border-bottom: 2px solid #0abcd0;}
+                
+                /* QPushButton按钮样式 */
+                #widget_menu QPushButton{border:1px; width:80px; height:50px}
+                #widget_menu QPushButton:hover {background: #7d7d7d;}
+                #widget_menu QPushButton:pressed{background: #7d7d7d; border-bottom: 2px solid #0abcd0;}
+             
+                /* QRadioButton按钮样式 */
+                QRadioButton{background: transparent; border: none;}
+                QRadioButton::indicator:checked 
+                {
+                    width: 20px;
+                    height: 20px;
+                    background-color: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, 
+                                                stop:0 #0abcd0,  
+                                                stop:0.8 #45474d, 
+                                                stop:0.85 #45474d, 
+                                                stop:1 #0abcd0);
+                    border: 1px solid #45474d;
+                    border-radius: 10px;
+                }
+                QRadioButton::indicator:unchecked{width: 20px;height: 20px;border-radius: 10px;
+                                                    background-color: #7d7d7d; border: 1px solid #666666;}
+                
+                /* 修饰QGroupBox下的QPushButton */
+                QGroupBox QPushButton{border:1px; width:50px; height:50px; border-radius:10px}
+                QGroupBox QPushButton:hover {background: #7d7d7d;}
+                QGroupBox QPushButton:pressed{background: #7d7d7d; border-bottom: 2px solid #0abcd0;}
+        ''')
 
     def load_UR5_models(self):
         '''
@@ -384,74 +508,74 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         DO = bin(int(self.data30003['数字输出']))                                           # 处理数字输出值,1-开启，0-关闭
 
         # 刷新机器运行时长
-        hours = self.data30003['机器运行时长'].seconds // 3600                                # 计算小时
+        hours = self.data30003['机器运行时长'] // 3600                                # 计算小时
         minutes = (self.data30003['机器运行时长'] % 3600) // 60                               # 计算分钟
-        seconds = int(self.data30003['机器运行时长'].seconds % 60)                            # 计算秒
+        seconds = int(self.data30003['机器运行时长'] % 60)                            # 计算秒
         self.le_runtime.setText('%s: %s: %s' % (hours, minutes, seconds))                   # 显示机械臂运行时间
 
         # 刷新界面数据
-        if self.DI[0] == '1':
+        if DI[0] == '1':
             self.chk_DI1.setChecked(True)
         else:
             self.chk_DI1.setChecked(False)
-        if self.DI[1] == '1':
+        if DI[1] == '1':
             self.chk_DI2.setChecked(True)
         else:
             self.chk_DI2.setChecked(False)
-        if self.DI[2] == '1':
+        if DI[2] == '1':
             self.chk_DI3.setChecked(True)
         else:
             self.chk_DI3.setChecked(False)
-        if self.DI[3] == '1':
+        if DI[3] == '1':
             self.chk_DI4.setChecked(True)
         else:
             self.chk_DI4.setChecked(False)
-        if self.DI[4] == '1':
+        if DI[4] == '1':
             self.chk_DI5.setChecked(True)
         else:
             self.chk_DI5.setChecked(False)
-        if self.DI[5] == '1':
+        if DI[5] == '1':
             self.chk_DI6.setChecked(True)
         else:
             self.chk_DI6.setChecked(False)
-        if self.DI[6] == '1':
+        if DI[6] == '1':
             self.chk_DI7.setChecked(True)
         else:
             self.chk_DI7.setChecked(False)
-        if self.DI[7] == '1':
+        if DI[7] == '1':
             self.chk_DI8.setChecked(True)
         else:
             self.chk_DI8.setChecked(False)
 
-        if self.DO[0] == '1':
+        if DO[0] == '1':
             self.chk_DO1.setChecked(True)
         else:
             self.chk_DO1.setChecked(False)
-        if self.DO[1] == '1':
+        if DO[1] == '1':
             self.chk_DO2.setChecked(True)
         else:
             self.chk_DO2.setChecked(False)
-        if self.DO[2] == '1':
+        if DO[2] == '1':
             self.chk_DO3.setChecked(True)
         else:
             self.chk_DO3.setChecked(False)
-        if self.DO[3] == '1':
+        if DO[3] == '1':
             self.chk_DO4.setChecked(True)
         else:
             self.chk_DO4.setChecked(False)
-        if self.DO[4] == '1':
+        if DO[4] == '1':
             self.chk_DO5.setChecked(True)
         else:
             self.chk_DO5.setChecked(False)
-        if self.DO[5] == '1':
+        if DO[5] == '1':
             self.chk_DO6.setChecked(True)
         else:
             self.chk_DO6.setChecked(False)
-        if self.DO[6] == '1':
+        if DO[6] == '1':
             self.chk_DO7.setChecked(True)
         else:
             self.chk_DO7.setChecked(False)
-        if self.DO[7] == '1':
+        if DO[7] == '1':
             self.chk_DO8.setChecked(True)
         else:
             self.chk_DO8.setChecked(False)
@@ -597,9 +721,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         :param event:   QT事件
         :return:        None
         '''
-        # 设置右侧追踪边界范围，宽度：11px，高度：整边追踪（留了100px给右下角）
-        self._right_rect = [QPoint(x, y) for x in range(self.width()-11, self.width())
-                            for y in range(0, self.height()-100)]
+        # 设置右侧追踪边界范围，宽度：5px，高度：整边追踪（留了100px给右下角）
+        self._right_rect = [QPoint(x, y) for x in range(self.width()-7, self.width())
+                            for y in range(100, self.height()-20)]
 
         # 设置底部追踪边界范围，宽度：整边追踪（留了100px给右下角），高度：8px
         self._bottom_rect = [QPoint(x, y) for x in range(0, self.width()-100)
