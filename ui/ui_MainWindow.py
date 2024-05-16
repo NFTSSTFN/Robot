@@ -409,6 +409,35 @@ class Ui_MainWindow(object):
         self.groupBox_6.setObjectName(u"groupBox_6")
         self.verticalLayout_19 = QVBoxLayout(self.groupBox_6)
         self.verticalLayout_19.setObjectName(u"verticalLayout_19")
+        self.horizontalLayout_42 = QHBoxLayout()
+        self.horizontalLayout_42.setObjectName(u"horizontalLayout_42")
+        self.label_67 = QLabel(self.groupBox_6)
+        self.label_67.setObjectName(u"label_67")
+
+        self.horizontalLayout_42.addWidget(self.label_67)
+
+        self.chk_DI0 = QCheckBox(self.groupBox_6)
+        self.chk_DI0.setObjectName(u"chk_DI0")
+
+        self.horizontalLayout_42.addWidget(self.chk_DI0)
+
+        self.horizontalSpacer_12 = QSpacerItem(37, 17, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_42.addItem(self.horizontalSpacer_12)
+
+        self.label_68 = QLabel(self.groupBox_6)
+        self.label_68.setObjectName(u"label_68")
+
+        self.horizontalLayout_42.addWidget(self.label_68)
+
+        self.chk_DO0 = QCheckBox(self.groupBox_6)
+        self.chk_DO0.setObjectName(u"chk_DO0")
+
+        self.horizontalLayout_42.addWidget(self.chk_DO0)
+
+
+        self.verticalLayout_19.addLayout(self.horizontalLayout_42)
+
         self.horizontalLayout_32 = QHBoxLayout()
         self.horizontalLayout_32.setObjectName(u"horizontalLayout_32")
         self.label_50 = QLabel(self.groupBox_6)
@@ -611,35 +640,6 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_19.addLayout(self.horizontalLayout_38)
-
-        self.horizontalLayout_39 = QHBoxLayout()
-        self.horizontalLayout_39.setObjectName(u"horizontalLayout_39")
-        self.label_64 = QLabel(self.groupBox_6)
-        self.label_64.setObjectName(u"label_64")
-
-        self.horizontalLayout_39.addWidget(self.label_64)
-
-        self.chk_DI8 = QCheckBox(self.groupBox_6)
-        self.chk_DI8.setObjectName(u"chk_DI8")
-
-        self.horizontalLayout_39.addWidget(self.chk_DI8)
-
-        self.horizontalSpacer_10 = QSpacerItem(37, 17, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_39.addItem(self.horizontalSpacer_10)
-
-        self.label_65 = QLabel(self.groupBox_6)
-        self.label_65.setObjectName(u"label_65")
-
-        self.horizontalLayout_39.addWidget(self.label_65)
-
-        self.chk_DO8 = QCheckBox(self.groupBox_6)
-        self.chk_DO8.setObjectName(u"chk_DO8")
-
-        self.horizontalLayout_39.addWidget(self.chk_DO8)
-
-
-        self.verticalLayout_19.addLayout(self.horizontalLayout_39)
 
 
         self.verticalLayout_20.addWidget(self.groupBox_6)
@@ -1099,7 +1099,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1139,6 +1139,10 @@ class Ui_MainWindow(object):
         self.btn_shutdown.setText(QCoreApplication.translate("MainWindow", u"Shutdown", None))
         self.label_49.setText(QCoreApplication.translate("MainWindow", u"\u673a\u68b0\u81c2\u8fd0\u884c\u65f6\u957f", None))
         self.groupBox_6.setTitle(QCoreApplication.translate("MainWindow", u"Digital I/O", None))
+        self.label_67.setText(QCoreApplication.translate("MainWindow", u"DI0", None))
+        self.chk_DI0.setText("")
+        self.label_68.setText(QCoreApplication.translate("MainWindow", u"DO0", None))
+        self.chk_DO0.setText("")
         self.label_50.setText(QCoreApplication.translate("MainWindow", u"DI1", None))
         self.chk_DI1.setText("")
         self.label_51.setText(QCoreApplication.translate("MainWindow", u"DO1", None))
@@ -1167,10 +1171,6 @@ class Ui_MainWindow(object):
         self.chk_DI7.setText("")
         self.label_63.setText(QCoreApplication.translate("MainWindow", u"DO7", None))
         self.chk_DO7.setText("")
-        self.label_64.setText(QCoreApplication.translate("MainWindow", u"DI8", None))
-        self.chk_DI8.setText("")
-        self.label_65.setText(QCoreApplication.translate("MainWindow", u"DO8", None))
-        self.chk_DO8.setText("")
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), QCoreApplication.translate("MainWindow", u"\u5b9e\u673a\u63a7\u5236", None))
         self.groupBox.setTitle(QCoreApplication.translate("MainWindow", u"TCP-Pose", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"X ", None))

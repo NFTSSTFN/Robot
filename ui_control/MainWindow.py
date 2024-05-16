@@ -5,7 +5,6 @@
 @File ：MainWindow.py
 @IDE ：PyCharm
 """
-
 from PySide2.QtWidgets import QMainWindow, QButtonGroup, QWidget
 from PySide2.QtCore import Qt, QPoint, QTimer
 from PySide2.QtGui import QIcon
@@ -13,11 +12,13 @@ from pyvistaqt import QtInteractor
 import pyvista as pv
 import numpy as np
 import os, sys, json
+import multiprocessing
+import time
 
 from ui.ui_MainWindow import Ui_MainWindow
 from sys_threading.control_robot import ControlRobot
 from ui_control.MessageBox import MassageBox
-from hardware.UR5 import UR5
+from hardware.UR5 import UR5, Test
 import models.mapping as mp
 
 
@@ -34,7 +35,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.CR = ControlRobot(self)                                # 初始化机械臂模型控制类
         self.CR.joint_rotation(2, self.joint_angles[1])             # 初始化UR5模型位姿
         self.update_sim_info()                                      # 根据初始化后的UR5位姿，刷新界面显示的值
-        self.UR5 = UR5(self)                                        # UR5实机操控函数
+        self.UR5 = UR5(self.config, self.data30003, self.UR5_event, self.UR5_process_control)  # UR5实机操控函数
         self.MSG = MassageBox()                                     # 重写的MessageBox窗体
 
         # 绑定系统界面最小化、最大化/正常化、关闭的按钮信号槽
@@ -90,9 +91,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         初始化系统所需常量
         :return:    None
         '''
-        self.BASE_DIR = os.path.dirname(sys.argv[0])    # 获取项目工作的根目录
-        self.plotter = QtInteractor(self)               # pyvista的窗体，负责渲染机械臂、点云模型
-        self.robot_joint_mesh = {}                      # 储存机械臂各个关节的模型
+        self.BASE_DIR = os.path.dirname(sys.argv[0])                    # 获取项目工作的根目录
+        self.plotter = QtInteractor(self)                               # pyvista的窗体，负责渲染机械臂、点云模型
+        self.robot_joint_mesh = {}                                      # 储存机械臂各个关节的模型
 
         # 读取系统默认配置文件，储存在self.config中
         with open('static/config.json', 'r', encoding='utf8') as json_file:
@@ -102,18 +103,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.sld_pre = 10 ** -self.config['jt_angle_pre']
 
         # 初始化界面刷新频率计时器，与UR5连接时，刷新界面数据、机械臂模型
-        self.timer = QTimer()                                       # 初始化Qtimer定时器，用来刷新UR5实机数据
-        self.timer.setInterval(self.config["refresh_rate"])         # 设置刷新频率，单位ms
-        self.timer.timeout.connect(self.UR5_updata)                         # 刷新机械臂状态、显示数据
+        self.timer = QTimer()                                           # 初始化Qtimer定时器，用来刷新UR5实机数据
+        self.timer.setInterval(self.config["refresh_rate"])             # 设置刷新频率，单位ms
+        self.timer.timeout.connect(self.UR5_updata)                     # 刷新机械臂状态、显示数据
 
     def init_variable(self):
         '''
         初始化系统所需变量
         :return:    None
         '''
-        # UR5机械臂连接状态
-        self.UR5_con_status = False                                     # 该状态决定了界面数据刷新、操作权限等
-        self.UR5_thread_start_status = False                            # 判断线程是否被开启
+        # UR5机械臂连接
+        self.UR5_process_start_status = False                           # 判断UR5数据接收进程是否被开启
+        self.UR5_event = multiprocessing.Event()                        # 事件决定进程状态（正常、休眠）
+
+        os.environ["QT_API"] = "PySide2"                                # 设置Qt的绑定库为PySide2,不然会有报错提示
+        # 定义数据接收进程共享字典
+        manager = multiprocessing.Manager()                             # 进程管理器
+        self.data30003 = manager.dict()                                 # 创建共享字典对象
+
+        # 定义数据接收进程控制状态
+        manager = multiprocessing.Manager()                             # 进程管理器
+        self.UR5_process_control = manager.dict()                       # 创建共享字典对象
+        self.UR5_process_control['Process_flag'] = False                # UR5进程开关，控制进程状态
 
         # 点击窗口边上，拉伸/缩小窗口所用变量，点击标题栏，移动整个窗体
         self._move_drag = False                                         # 标题栏
@@ -135,7 +146,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.joint_angles_real = np.array([0., 0., 0., 0., 0., 0.])     # 初始化机械臂(实机)各个关节的角度，里面储存角度值
         self.joint_radians_real = np.array([0., 0., 0., 0., 0., 0.])    # 初始化机械臂(实机)各个关节的弧度，里面储存弧度值
         self.TCP_pose = np.array([0., 0., 0., 0., 0., 0.])              # 初始化机械臂TCP位姿
-        self.data30003 = {}                                             # 接收30003端口机械臂数据(实机)
 
     def init_ui_style(self):
         '''
@@ -236,6 +246,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.le_runtime.setReadOnly(True)                               # 机械臂运行时间
 
         # 设置机械臂IO的checkbox为只读
+        self.chk_DI0.setDisabled(True)
         self.chk_DI1.setDisabled(True)
         self.chk_DI2.setDisabled(True)
         self.chk_DI3.setDisabled(True)
@@ -243,7 +254,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.chk_DI5.setDisabled(True)
         self.chk_DI6.setDisabled(True)
         self.chk_DI7.setDisabled(True)
-        self.chk_DI8.setDisabled(True)
+        self.chk_DO0.setDisabled(True)
         self.chk_DO1.setDisabled(True)
         self.chk_DO2.setDisabled(True)
         self.chk_DO3.setDisabled(True)
@@ -251,7 +262,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.chk_DO5.setDisabled(True)
         self.chk_DO6.setDisabled(True)
         self.chk_DO7.setDisabled(True)
-        self.chk_DO8.setDisabled(True)
 
         # 设置系统关闭、最大/最小/正常化的显示图标
         self.btn_min.setStyleSheet(u"font-family:\"Webdings\";\n")      # 这是一种符号字体，有对照表，0表现为_
@@ -421,24 +431,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         :return:    bool
         '''
         if self.rbtn_con.isChecked():                                                       # 按钮被选中
-            ret = self.UR5.connect()                                                        # 尝试连接
+            ret = self.UR5.connect_30003()                                                  # 尝试连接，初始化socket
             if not ret:                                                                     # 连接失败
-                self.MSG.show_message('连接异常', '请检查IP地址、并保证网络通畅', block=True)     # 弹窗提示
+                self.MSG.show_message('连接异常', '请检查IP地址、并保证网络通畅', block=True)      # 弹窗提示
                 self.rbtn_con.setChecked(False)                                             # 更改按钮为未选中状态
-                self.UR5_con_status = False                                                 # UR5连接状态置False
+                self.UR5_event.set()                                                        # 数据接收进程休眠
                 self.enable_sim_ctl()                                                       # 开启仿真操作权限
                 self.timer.stop()                                                           # 关闭刷新定时器
-            else:                                                                           # 连接成功
-                self.UR5_con_status = True                                                  # UR5连接状态置True
+            else:
                 self.disable_sim_ctl()                                                      # 禁用仿真操作权限
-                if not self.UR5_thread_start_status:
-                    self.UR5.start()                                                        # 开启数据接收线程
-                    self.UR5_thread_start_status = True                                     # 数据接收线程开启标志
-                self.timer.start()                                                          # 开启刷新定时器
-        else:                                                                               # 按钮未被选中
-            self.UR5_con_status = False                                                     # UR5连接状态置False
+                if not self.UR5_process_start_status:                                       # 进程未开启，开启进程
+                    self.UR5_process_control['Process_flag'] = True                         # 开启进程循环
+                    self.UR5.start()                                                        # 启用UR5数据接收进程
+                    self.UR5_process_start_status = True                                    # 数据接收线程开启标志
+                    self.UR5.connect_29999()                                                # 连接Dashboard端口
+                else:
+                    self.UR5_event.clear()                                                  # 进程已开启，开启接收事件就行
+                self.timer.start()                                                          # 启用界面刷新定时器
+        else:                                                                               # 断开连接
+            self.UR5_event.set()                                                            # 数据接收进程工作
             self.enable_sim_ctl()                                                           # 开启仿真操作权限
-            self.timer.stop()                                                               # 关闭刷新定时器
+            self.timer.stop()                                                               # 停止刷新定时器
 
     def UR5_updata(self):
         '''
@@ -453,6 +466,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.CR.joint_rotation(i+1, self.joint_angles_real[i])                          # 转动关节
         self.update_sim_info()                                                              # 刷新UR5数据
         self.update_UR5_info()                                                              # 刷新UR5其他数据
+        pass
 
     def update_sim_info(self):
         '''
@@ -504,25 +518,29 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         刷新接收到的UR5实机数据
         :return:
         '''
-        DI = bin(int(self.data30003['数字输入']))                                           # 处理数字输入值,1-开启，0-关闭
-        DO = bin(int(self.data30003['数字输出']))                                           # 处理数字输出值,1-开启，0-关闭
+        DI = bin(256 | self.data30003['数字输入'])[3:]                                           # 处理数字输入值,1-开启，0-关闭
+        DO = bin(256 | self.data30003['数字输出'])[3:]                                           # 处理数字输出值,1-开启，0-关闭
 
         # 刷新机器运行时长
-        hours = self.data30003['机器运行时长'] // 3600                                # 计算小时
-        minutes = (self.data30003['机器运行时长'] % 3600) // 60                               # 计算分钟
-        seconds = int(self.data30003['机器运行时长'] % 60)                            # 计算秒
+        hours = int(self.data30003['机器运行时长'] // 3600)                                   # 计算小时
+        minutes = int((self.data30003['机器运行时长'] % 3600) // 60 )                         # 计算分钟
+        seconds = int(self.data30003['机器运行时长'] % 60)                                    # 计算秒
         self.le_runtime.setText('%s: %s: %s' % (hours, minutes, seconds))                   # 显示机械臂运行时间
 
         # 刷新界面数据
-        if DI[0] == '1':
+        if DI[7] == '1':
+            self.chk_DI0.setChecked(True)
+        else:
+            self.chk_DI0.setChecked(False)
+        if DI[6] == '1':
             self.chk_DI1.setChecked(True)
         else:
             self.chk_DI1.setChecked(False)
-        if DI[1] == '1':
+        if DI[5] == '1':
             self.chk_DI2.setChecked(True)
         else:
             self.chk_DI2.setChecked(False)
-        if DI[2] == '1':
+        if DI[4] == '1':
             self.chk_DI3.setChecked(True)
         else:
             self.chk_DI3.setChecked(False)
@@ -530,32 +548,32 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.chk_DI4.setChecked(True)
         else:
             self.chk_DI4.setChecked(False)
-        if DI[4] == '1':
+        if DI[2] == '1':
             self.chk_DI5.setChecked(True)
         else:
             self.chk_DI5.setChecked(False)
-        if DI[5] == '1':
+        if DI[1] == '1':
             self.chk_DI6.setChecked(True)
         else:
             self.chk_DI6.setChecked(False)
-        if DI[6] == '1':
+        if DI[0] == '1':
             self.chk_DI7.setChecked(True)
         else:
             self.chk_DI7.setChecked(False)
-        if DI[7] == '1':
-            self.chk_DI8.setChecked(True)
-        else:
-            self.chk_DI8.setChecked(False)
 
-        if DO[0] == '1':
+        if DO[7] == '1':
+            self.chk_DO0.setChecked(True)
+        else:
+            self.chk_DO0.setChecked(False)
+        if DO[6] == '1':
             self.chk_DO1.setChecked(True)
         else:
             self.chk_DO1.setChecked(False)
-        if DO[1] == '1':
+        if DO[5] == '1':
             self.chk_DO2.setChecked(True)
         else:
             self.chk_DO2.setChecked(False)
-        if DO[2] == '1':
+        if DO[4] == '1':
             self.chk_DO3.setChecked(True)
         else:
             self.chk_DO3.setChecked(False)
@@ -563,22 +581,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.chk_DO4.setChecked(True)
         else:
             self.chk_DO4.setChecked(False)
-        if DO[4] == '1':
+        if DO[2] == '1':
             self.chk_DO5.setChecked(True)
         else:
             self.chk_DO5.setChecked(False)
-        if DO[5] == '1':
+        if DO[1] == '1':
             self.chk_DO6.setChecked(True)
         else:
             self.chk_DO6.setChecked(False)
-        if DO[6] == '1':
+        if DO[0] == '1':
             self.chk_DO7.setChecked(True)
         else:
             self.chk_DO7.setChecked(False)
-        if DO[7] == '1':
-            self.chk_DO8.setChecked(True)
-        else:
-            self.chk_DO8.setChecked(False)
 
     def disable_sim_ctl(self):
         '''
@@ -646,9 +660,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         关闭系统，及所有子页面
         :return:    None
         '''
-        if self.rbtn_con.isChecked():                           # 如果忘记与UR5断开通讯
-            self.UR5.close()                                    # 中断与UR5通讯
-        self.close()                                            # 关闭系统页面
+        self.UR5_process_control['Process_flag'] = False            # 关闭进程循环，结束数据接收进程
+        if self.UR5_process_start_status:
+            self.UR5.close_29999()                                  # 关闭DashBoard端口
+        time.sleep(0.2)                                             # 给0.2s的延时，确保进程正确关闭
+        self.close()                                                # 关闭系统页面
 
     def mousePressEvent(self, event):
         '''

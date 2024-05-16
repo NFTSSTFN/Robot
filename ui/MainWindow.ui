@@ -189,7 +189,7 @@
                       <enum>QTabWidget::Rounded</enum>
                      </property>
                      <property name="currentIndex">
-                      <number>0</number>
+                      <number>1</number>
                      </property>
                      <property name="elideMode">
                       <enum>Qt::ElideLeft</enum>
@@ -480,6 +480,51 @@
                           <string>Digital I/O</string>
                          </property>
                          <layout class="QVBoxLayout" name="verticalLayout_19">
+                          <item>
+                           <layout class="QHBoxLayout" name="horizontalLayout_42">
+                            <item>
+                             <widget class="QLabel" name="label_67">
+                              <property name="text">
+                               <string>DI0</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QCheckBox" name="chk_DI0">
+                              <property name="text">
+                               <string/>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <spacer name="horizontalSpacer_12">
+                              <property name="orientation">
+                               <enum>Qt::Horizontal</enum>
+                              </property>
+                              <property name="sizeHint" stdset="0">
+                               <size>
+                                <width>37</width>
+                                <height>17</height>
+                               </size>
+                              </property>
+                             </spacer>
+                            </item>
+                            <item>
+                             <widget class="QLabel" name="label_68">
+                              <property name="text">
+                               <string>DO0</string>
+                              </property>
+                             </widget>
+                            </item>
+                            <item>
+                             <widget class="QCheckBox" name="chk_DO0">
+                              <property name="text">
+                               <string/>
+                              </property>
+                             </widget>
+                            </item>
+                           </layout>
+                          </item>
                           <item>
                            <layout class="QHBoxLayout" name="horizontalLayout_32">
                             <item>
@@ -788,51 +833,6 @@
                             </item>
                             <item>
                              <widget class="QCheckBox" name="chk_DO7">
-                              <property name="text">
-                               <string/>
-                              </property>
-                             </widget>
-                            </item>
-                           </layout>
-                          </item>
-                          <item>
-                           <layout class="QHBoxLayout" name="horizontalLayout_39">
-                            <item>
-                             <widget class="QLabel" name="label_64">
-                              <property name="text">
-                               <string>DI8</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QCheckBox" name="chk_DI8">
-                              <property name="text">
-                               <string/>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <spacer name="horizontalSpacer_10">
-                              <property name="orientation">
-                               <enum>Qt::Horizontal</enum>
-                              </property>
-                              <property name="sizeHint" stdset="0">
-                               <size>
-                                <width>37</width>
-                                <height>17</height>
-                               </size>
-                              </property>
-                             </spacer>
-                            </item>
-                            <item>
-                             <widget class="QLabel" name="label_65">
-                              <property name="text">
-                               <string>DO8</string>
-                              </property>
-                             </widget>
-                            </item>
-                            <item>
-                             <widget class="QCheckBox" name="chk_DO8">
                               <property name="text">
                                <string/>
                               </property>
